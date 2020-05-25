@@ -43,8 +43,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	private AuthenticationManager authenticationManager;
 
 	/**
-	 * Jwt access token converter. Convert Oauth2 Token to JWT Token. Uses the
-	 * self-signed certificate to sign the generated tokens.
+	 * Jwt access token converter. 
+	 * Convert Oauth2 Token to JWT Token. 
+	 * Uses the self-signed certificate to sign the generated tokens.
 	 *
 	 * @return the jwt access token converter
 	 */
@@ -68,9 +69,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	}
 
 	/**
-	 * Configure features of the Authorization Server endpoints. Token store, user
-	 * approvals and grant types. If you use password grants then you need to
-	 * provide an AuthenticationManager.
+	 * Configure features of the Authorization Server endpoints. 
+	 * Token store, user approvals and grant types. 
+	 * If you use password grants then you need to provide an AuthenticationManager.
 	 *
 	 * @param endpoints the endpoints
 	 */
@@ -84,9 +85,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	}
 
 	/**
-	 * Authentication filters for the token endpoint. Allow access to
-	 * /oauth/check_token and /oauth/token_key endpoints. These endpoints are not
-	 * exposed by default (have access denyAll()).
+	 * Authentication filters for the token endpoint. 
+	 * Allow access to /oauth/check_token and /oauth/token_key endpoints. 
+	 * These endpoints are not exposed by default (have access denyAll()).
 	 *
 	 * @param oauthServer the oauth server
 	 */
@@ -114,4 +115,5 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 			.authorities("ROLE_CLIENT")
 			.accessTokenValiditySeconds(300);
 	}
+	
 }
