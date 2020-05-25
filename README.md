@@ -8,8 +8,8 @@ These instructions will get you a copy of the projects up and running on your lo
 
 ### Projects
 
-- jwt: Spring Boot application that makes use of JWT authentication for securing an exposed REST API
-- oauth2-jwt: Spring Boot application that builds an OAuth 2.0 Authorization Server to authenticate your identity and a Resource Server which handles authenticated requests
+- **jwt**: Spring Boot application that makes use of JWT authentication for securing an exposed REST API
+- **oauth2-jwt**: Spring Boot application that builds an OAuth 2.0 Authorization Server to authenticate your identity and a Resource Server which handles authenticated requests
 
 ### Running jwt
 
@@ -24,5 +24,5 @@ jwt.postman_collection.json into Postman
 The application can be tested locally using:
 
 ```
-oauth2-jwt.postman_collection.json into Postman
+oauth.postman_collection.json into Postman
 ```
