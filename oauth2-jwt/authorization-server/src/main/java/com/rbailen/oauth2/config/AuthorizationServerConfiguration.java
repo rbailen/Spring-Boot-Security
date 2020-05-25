@@ -25,13 +25,13 @@ import com.rbailen.oauth2.service.JwtUserDetailsService;
 @EnableAuthorizationServer
 @EnableConfigurationProperties(SecurityProperties.class)
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
-	
+
 	/** The security properties. */
 	@Autowired
 	private SecurityProperties securityProperties;
-	
-    /** The password encoder. */
-    @Autowired
+
+	/** The password encoder. */
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	/** The user details service. */
@@ -41,19 +41,18 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	/** The authentication manager. */
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
 	/**
-	 * Jwt access token converter.
-	 * Convert Oauth2 Token to JWT Token.
-	 * Uses the self-signed certificate to sign the generated tokens.
+	 * Jwt access token converter. Convert Oauth2 Token to JWT Token. Uses the
+	 * self-signed certificate to sign the generated tokens.
 	 *
 	 * @return the jwt access token converter
 	 */
 	@Bean
 	public JwtAccessTokenConverter jwtAccessTokenConverter() {
-		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(securityProperties.getJwt().getKeyStore(),
 				securityProperties.getJwt().getKeyStorePassword().toCharArray());
+		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		converter.setKeyPair(keyStoreKeyFactory.getKeyPair(securityProperties.getJwt().getKeyPairAlias()));
 		return converter;
 	}
@@ -64,40 +63,40 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	 * @return the token store
 	 */
 	@Bean
-    public TokenStore tokenStore() {
+	public TokenStore tokenStore() {
 		return new JwtTokenStore(jwtAccessTokenConverter());
-    }
-	
+	}
+
 	/**
-	 * Configure features of the Authorization Server endpoints.
-	 * Token store, user approvals and grant types.
-	 * If you use password grants then you need to provide an AuthenticationManager.
+	 * Configure features of the Authorization Server endpoints. Token store, user
+	 * approvals and grant types. If you use password grants then you need to
+	 * provide an AuthenticationManager.
 	 *
 	 * @param endpoints the endpoints
 	 */
 	@Override
-    public void configure(final AuthorizationServerEndpointsConfigurer endpoints) {
-        endpoints
-        	.authenticationManager(authenticationManager)
-            .accessTokenConverter(jwtAccessTokenConverter())
-            .userDetailsService(userDetailsService)
-            .tokenStore(tokenStore());
-    }
+	public void configure(final AuthorizationServerEndpointsConfigurer endpoints) {
+		endpoints
+			.authenticationManager(authenticationManager)
+			.accessTokenConverter(jwtAccessTokenConverter())
+			.userDetailsService(userDetailsService)
+			.tokenStore(tokenStore());
+	}
 
 	/**
-	 * Authentication filters for the token endpoint.
-	 * Allow access to /oauth/check_token and /oauth/token_key endpoints.
-	 * These endpoints are not exposed by default (have access denyAll()).
+	 * Authentication filters for the token endpoint. Allow access to
+	 * /oauth/check_token and /oauth/token_key endpoints. These endpoints are not
+	 * exposed by default (have access denyAll()).
 	 *
 	 * @param oauthServer the oauth server
 	 */
-    @Override
-    public void configure(final AuthorizationServerSecurityConfigurer oauthServer) {
-        oauthServer
-        	.passwordEncoder(passwordEncoder)
-        	.tokenKeyAccess("permitAll()")
-            .checkTokenAccess("isAuthenticated()");
-    }
+	@Override
+	public void configure(final AuthorizationServerSecurityConfigurer oauthServer) {
+		oauthServer
+			.passwordEncoder(passwordEncoder)
+			.tokenKeyAccess("permitAll()")
+			.checkTokenAccess("isAuthenticated()");
+	}
 
 	/**
 	 * OAuth2 clients details service.
@@ -106,13 +105,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	 * @throws Exception the exception
 	 */
 	@Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-        	.withClient("clientId")
-            .secret(passwordEncoder.encode("secret"))
-            .authorizedGrantTypes("password", "refresh_token", "client_credentials")
-            .scopes("read", "write")
-            .authorities("ROLE_CLIENT")
-            .accessTokenValiditySeconds(300);
-    }
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		clients.inMemory()
+			.withClient("clientId")
+			.secret(passwordEncoder.encode("secret"))
+			.authorizedGrantTypes("password", "refresh_token", "client_credentials")
+			.scopes("read", "write")
+			.authorities("ROLE_CLIENT")
+			.accessTokenValiditySeconds(300);
+	}
 }
