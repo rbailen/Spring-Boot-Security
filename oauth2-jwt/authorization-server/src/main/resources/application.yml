@@ -1,0 +1,8 @@
+server:
+  port: 8080
+  
+security:
+  jwt:
+    key-store: classpath:keystore.jks
+    key-store-password: mypass
+    key-pair-alias: mytest
