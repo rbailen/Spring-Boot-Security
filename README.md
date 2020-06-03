@@ -26,3 +26,9 @@ The application can be tested locally using:
 ```
 oauth.postman_collection.json into Postman
 ```
+
+> Get Token with ROLE_USER
+![user.png](https://github.com/rbailen/Spring-Boot-Security/raw/master/user.png)
+
+> Get Token with ROLE_ADMIN
+![admin.png](https://github.com/rbailen/Spring-Boot-Security/raw/master/admin.png)
