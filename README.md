@@ -28,7 +28,7 @@ oauth.postman_collection.json into Postman
 ```
 
 > Get Token with ROLE_USER
-<img src="https://github.com/rbailen/Spring-Boot-Security/raw/master/user.png" width="50%" height="50%>
+<img src="https://github.com/rbailen/Spring-Boot-Security/raw/master/user.png" width="50%" height="50%">
 
 > Get Token with ROLE_ADMIN
 <img src="https://github.com/rbailen/Spring-Boot-Security/raw/master/admin.png" height="300" width="600">
