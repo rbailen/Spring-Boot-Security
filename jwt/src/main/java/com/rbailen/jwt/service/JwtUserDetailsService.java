@@ -32,7 +32,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = findByUsername(username);
 
-		if (user == null) {
+		if (null == user) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
 
